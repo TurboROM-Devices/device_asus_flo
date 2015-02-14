@@ -19,20 +19,8 @@
  },
  {
    "remote":      "github",
-   "repository":  "BrokenOs/kernel_asus_flo",
+   "repository":  "SlimRoms/kernel_asus_flo",
    "target_path": "kernel/asus/flo",
-   "branch":      "lp"
- },
- {
-   "remote":       "github",
-   "repository":   "omnirom/android_prebuilts_gcc_linux-x86_arm_arm-eabi-4.7",
-   "target_path":  "prebuilts/gcc/linux-x86/arm/arm-eabi-4.7",
-   "branch":       "android-5.0"
- },
- {
-   "remote":       "github",
-   "repository":   "omnirom/android_prebuilts_gcc_darwin-x86_arm_arm-eabi-4.7",
-   "target_path":  "prebuilts/gcc/darwin-x86/arm/arm-eabi-4.7",
-   "branch":     "android-5.0"
+   "branch":      "lp5.0"
  }
 ]
