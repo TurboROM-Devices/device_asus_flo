@@ -6,7 +6,7 @@ TARGET_SCREEN_WIDTH := 1200
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit from our custom product configuration 
-$(call inherit-product, vendor/broken/config/common_full_tablet_wifionly.mk.mk)
+$(call inherit-product, vendor/broken/config/common_full_tablet_wifionly.mk)
 
 # Enhanced NFC
 $(call inherit-product, vendor/broken/config/nfc_enhanced.mk)
