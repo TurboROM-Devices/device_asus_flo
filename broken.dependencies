@@ -33,6 +33,6 @@
    "remote":       "github",
    "repository":   "omnirom/android_prebuilts_gcc_darwin-x86_arm_arm-eabi-4.7",
    "target_path":  "prebuilts/gcc/darwin-x86/arm/arm-eabi-4.7",
-   "revision":     "android-5.0"
+   "branch":     "android-5.0"
  }
 ]
