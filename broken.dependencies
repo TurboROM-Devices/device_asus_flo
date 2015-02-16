@@ -19,8 +19,8 @@
  },
  {
    "remote":      "github",
-   "repository":  "SlimRoms/kernel_asus_flo",
+   "repository":  "BrokenOs/kernel_asus_flo",
    "target_path": "kernel/asus/flo",
-   "branch":      "lp5.0"
+   "branch":      "lp"
  }
 ]
