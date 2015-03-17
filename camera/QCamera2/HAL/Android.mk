@@ -17,6 +17,9 @@ LOCAL_SRC_FILES := \
         QCameraParameters.cpp \
         QCameraThermalAdapter.cpp
 
+# Ignore benign clang warnings, avoid changes to third party code.
+LOCAL_CLANG_CFLAGS += -Wno-gnu-designator
+
 LOCAL_CFLAGS = -Wall -Werror -DDEFAULT_ZSL_MODE_ON -DDEFAULT_DENOISE_MODE_ON
 #Debug logs are enabled
 #LOCAL_CFLAGS += -DDISABLE_DEBUG_LOG
@@ -25,7 +28,7 @@ LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/../stack/common \
         frameworks/native/include/media/hardware \
         frameworks/native/include/media/openmax \
-        hardware/qcom/media/libstagefrighthw \
+        $(call project-path-for,qcom-media)/libstagefrighthw \
         system/media/camera/include \
         $(LOCAL_PATH)/../../mm-image-codec/qexif \
         $(LOCAL_PATH)/../../mm-image-codec/qomx_core \
@@ -33,10 +36,10 @@ LOCAL_C_INCLUDES := \
 
 ifneq ($(filter msm8974 msm8x74,$(TARGET_BOARD_PLATFORM)),)
 LOCAL_C_INCLUDES += \
-        hardware/qcom/display/msm8974/libgralloc
+        $(call project-path-for,qcom-display)/libgralloc
 else
 LOCAL_C_INCLUDES += \
-        hardware/qcom/display/msm8960/libgralloc
+        $(call project-path-for,qcom-display)/libgralloc
 endif
 
 LOCAL_SHARED_LIBRARIES := libcamera_client liblog libhardware libutils libcutils libdl

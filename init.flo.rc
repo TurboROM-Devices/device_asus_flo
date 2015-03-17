@@ -27,6 +27,7 @@ on init
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
 
+    # USB storage
     mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
     mkdir /storage/usbdisk 0700 root root
 
@@ -69,9 +70,6 @@ on boot
 
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
-
-    #Remove SUID bit for iproute2 ip tool
-    chmod 0755 /system/bin/ip
 
     #port-bridge
     chmod 0660 /dev/smd0
@@ -135,8 +133,11 @@ on boot
 
 # Assign TCP buffer thresholds to be ceiling value of technology maximums
 # Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max  1220608
-    write /proc/sys/net/core/wmem_max  1220608
+    write /proc/sys/net/core/rmem_max  2097152
+    write /proc/sys/net/core/wmem_max  2097152
+
+# Tune buffersize for higher Miracast throughput
+    setprop net.tcp.buffersize.wifi 524288,1048576,2560000,524288,1048576,2560000
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -145,7 +146,6 @@ on post-fs-data
     chown system system /dev/wcnss_wlan
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
-    mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
     mkdir /tombstones/wcnss 0771 system system
@@ -253,14 +253,69 @@ on post-fs-data
     write /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq 918000
     write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 1026000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 94500
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
     write /dev/cpuctl/apps/cpu.notify_on_migrate 1
+
+    # post boot
+    setprop sys.perf.profile 1
+
+on property:sys.boot_completed=0
+    setprop sys.perf.profile 2
+
+# CM Performance Profiles
+on property:sys.perf.profile=0
+    start mpdecision
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1512000
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor "ondemand"
+
+on property:sys.perf.profile=1
+    start mpdecision
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 94500
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1512000
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor "ondemand"
+
+on property:sys.perf.profile=2
+    stop mpdecision
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1836000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1836000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1836000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1836000
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor "performance"
 
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
@@ -435,6 +490,16 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
     disabled
     oneshot
 
+service dhcpcd_eth0 /system/bin/dhcpcd -ABDKL
+    class main
+    disabled
+    oneshot
+
+service iprenew_eth0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
@@ -447,6 +512,11 @@ service charger /sbin/healthd -c
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
+
+# USB-OTG storage daemon
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+    class late_start
+    disabled
 
 service thermald /system/bin/thermald
     class main
@@ -474,7 +544,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     group camera system inet input
 
 service wcnss_init /system/bin/sh /system/etc/init.flo.wifi.sh
-    class main
+    class late_start
     user system
     group system wifi
     seclabel u:r:conn_init:s0
@@ -502,8 +572,6 @@ service qseecomd /system/bin/qseecomd
 service diag_mdlog /system/bin/diag_mdlog -s 100
     class late_start
     disabled
-
-
 
 # on property:gsm.sim.state=READY
 #    start diag_mdlog

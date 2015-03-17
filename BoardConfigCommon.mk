@@ -18,11 +18,9 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := krait
-ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_NO_BOOTLOADER := true
 
@@ -30,14 +28,15 @@ BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 # BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=msm8960 maxcpus=2
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=flo user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE += vmalloc=340M
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
-#Kernel Flags
-TARGET_KERNEL_SOURCE := kernel/asus/flo
-TARGET_KERNEL_CONFIG := broken_flo_defconfig
-KERNEL_DEFCONFIG := broken_flo_defconfig
-VARIANT_DEFCONFIG := broken_flo_defconfig
-SELINUX_DEFCONFIG := broken_flo_defconfig
+# Try to build the kernel
+TARGET_KERNEL_SOURCE := kernel/google/msm
+TARGET_KERNEL_CONFIG := aicp_flo_defconfig
+KERNEL_DEFCONFIG := aicp_flo_defconfig
+VARIANT_DEFCONFIG := aicp_flo_defconfig
+SELINUX_DEFCONFIG := aicp_flo_defconfig
 
 BOARD_USES_ALSA_AUDIO:= true
 BOARD_USES_LEGACY_ALSA_AUDIO:= false
@@ -73,7 +72,7 @@ PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 3200000
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 TARGET_USES_SF_BYPASS := true
-TARGET_USES_C2D_COMPOSITON := true
+TARGET_USES_C2D_COMPOSITION := false
 
 TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
 #TARGET_RECOVERY_UI_LIB := librecovery_ui_flo
@@ -111,8 +110,14 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 33554432
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 5242880
 
+# Ensure f2fstools are built
+ifeq ($(HOST_OS),linux)
+TARGET_USERIMAGES_USE_F2FS := true
+endif
+
 TARGET_USES_POST_PROCESSING := true
 TARGET_CUSTOM_DISPLAY_TUNING := true
+TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
@@ -134,6 +139,7 @@ BOARD_SEPOLICY_UNION += \
         file.te \
         file_contexts \
         hostapd.te \
+        init.te \
         irsc_util.te \
         kickstart.te \
         mediaserver.te \
@@ -176,3 +182,5 @@ TW_BRIGHTNESS_PATH := /sys/devices/platform/msm_fb.591617/leds/lcd-backlight/bri
 TW_MAX_BRIGHTNESS := 255
 TW_NO_SCREEN_BLANK := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
+
+-include vendor/asus/flo/BoardConfigVendor.mk
