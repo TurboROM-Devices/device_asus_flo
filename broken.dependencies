@@ -19,8 +19,8 @@
  },
  {
    "remote":      "github",
-   "repository":  "AICP/kernel_google_msm",
-   "target_path": "kernel/google/msm",
+   "repository":  "BrokenRoms/kernel_asus_flo",
+   "target_path": "kernel/asus/flo",
    "branch":      "lp5.1"
  }
 ]
