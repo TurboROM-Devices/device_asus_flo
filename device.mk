@@ -33,6 +33,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     nfc_nci.bcm2079x.default
 
+# Speed up art
+PRODUCT_PROPERTY_OVERRIDES += \
+dalvik.vm.image-dex2oat-filter=everything \
+dalvik.vm.dex2oat-filter=everything
+
 # the actual meat of the device-specific product definition
 $(call inherit-product, device/asus/flo/device-common.mk)
 
