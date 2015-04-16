@@ -19,7 +19,7 @@
  },
  {
    "remote":      "github",
-   "repository":  "BrokenRoms/kernel_asus_flo",
+   "repository":  "BrokenROM/kernel_asus_flo",
    "target_path": "kernel/asus/flo",
    "branch":      "lp5.1"
  }
