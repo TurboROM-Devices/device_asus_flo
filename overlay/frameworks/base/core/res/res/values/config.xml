@@ -266,8 +266,8 @@
     <!-- Screen brightness when dozing -->
     <integer name="config_screenBrightnessDoze">17</integer>
 
-    <!-- Doze: force using accelerometer as pick up sensor -->
-    <bool name="config_dozeUseAccelerometer">true</bool>
+    <!-- Doze: force using accelerometer as pick up sensor 
+    <bool name="config_dozeUseAccelerometer">true</bool> -->
 
     <bool name="config_dreamsSupported">true</bool>
 
