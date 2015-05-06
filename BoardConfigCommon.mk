@@ -33,10 +33,10 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/asus/flo
-TARGET_KERNEL_CONFIG := broken_flo_defconfig
-KERNEL_DEFCONFIG := broken_flo_defconfig
-VARIANT_DEFCONFIG := broken_flo_defconfig
-SELINUX_DEFCONFIG := broken_flo_defconfig
+TARGET_KERNEL_CONFIG := custom_flo_defconfig
+KERNEL_DEFCONFIG := custom_flo_defconfig
+VARIANT_DEFCONFIG := custom_flo_defconfig
+SELINUX_DEFCONFIG := custom_flo_defconfig
 
 BOARD_USES_ALSA_AUDIO:= true
 BOARD_USES_LEGACY_ALSA_AUDIO:= false
