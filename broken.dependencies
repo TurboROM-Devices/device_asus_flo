@@ -19,8 +19,8 @@
  },
  {
    "remote":      "github",
-   "repository":  "BrokenROM/kernel_asus_flo",
+   "repository":  "Crackerteg/dirty_flo",
    "target_path": "kernel/asus/flo",
-   "branch":      "lp5.1"
+   "branch":      "lollipop"
  }
 ]
