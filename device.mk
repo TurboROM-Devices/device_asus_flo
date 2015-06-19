@@ -32,6 +32,10 @@ PRODUCT_PACKAGES += \
 # NFC
 PRODUCT_PACKAGES += \
     nfc_nci.bcm2079x.default
+    
+# http://b/15193147
+# TODO(danalbert): Remove this once stlport is dead and gone.
+PRODUCT_PACKAGES +=  libstlport
 
 # Needed for VOIP+SIP
 PRODUCT_PACKAGES += \
@@ -40,9 +44,9 @@ PRODUCT_PACKAGES += \
     rild
 
 # Speed up art
-PRODUCT_PROPERTY_OVERRIDES += \
-dalvik.vm.image-dex2oat-filter=everything \
-dalvik.vm.dex2oat-filter=everything
+#PRODUCT_PROPERTY_OVERRIDES += \
+#dalvik.vm.image-dex2oat-filter=everything \
+#dalvik.vm.dex2oat-filter=everything
 
 # the actual meat of the device-specific product definition
 $(call inherit-product, device/asus/flo/device-common.mk)
