@@ -41,6 +41,9 @@ SELINUX_DEFCONFIG := custom_flo_defconfig
 # Build with compressed odex
 WITH_DEXPREOPT_COMP=true
 
+# Block builds
+BLOCK_BASED_OTA=true
+
 BOARD_USES_ALSA_AUDIO:= true
 BOARD_USES_LEGACY_ALSA_AUDIO:= false
 BOARD_USES_FLUENCE_INCALL := true
