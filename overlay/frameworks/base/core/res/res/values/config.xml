@@ -180,7 +180,7 @@
     </string-array>
 
     <!-- This device is not "voice capable"; it's data-only. -->
-    <bool name="config_voice_capable">false</bool>
+    <bool name="config_voice_capable">true</bool>
 
     <!-- This device does not allow sms service. -->
     <bool name="config_sms_capable">false</bool>
@@ -267,4 +267,8 @@
     <integer name="config_screenBrightnessDoze">17</integer>
 
     <bool name="config_dreamsSupported">true</bool>
+
+    <!--  Add VOIP Features -->
+    <bool name="config_sip_wifi_only">false</bool>
+    <bool name="config_built_in_sip_phone">true</bool>
 </resources>

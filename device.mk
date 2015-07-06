@@ -33,6 +33,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     nfc_nci.bcm2079x.default
 
+# Needed for VOIP+SIP
+PRODUCT_PACKAGES += \
+    InCallUI \
+    Dialer \
+    rild
+
 # Speed up art
 PRODUCT_PROPERTY_OVERRIDES += \
 dalvik.vm.image-dex2oat-filter=everything \
