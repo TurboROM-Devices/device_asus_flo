@@ -273,4 +273,7 @@
     <!--  Add VOIP Features -->
     <bool name="config_sip_wifi_only">false</bool>
     <bool name="config_built_in_sip_phone">true</bool>
+
+    <!-- Support Blur -->
+    <bool name="config_ui_blur_enabled">true</bool>
 </resources>
