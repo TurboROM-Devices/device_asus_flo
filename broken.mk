@@ -23,4 +23,8 @@ $(call inherit-product, device/asus/flo/device.mk)
 $(call inherit-product-if-exists, vendor/asus/flo/device-vendor.mk)
 #$(call inherit-product-if-exists, vendor/qcom/proprietary/common/config/device-vendor.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=razor BUILD_FINGERPRINT=google/razor/flo:5.0.2/LRX22G/1649326:user/release-keys PRIVATE_BUILD_DESC="razor-user 5.0.2 LRX22G 1649326 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=razor \
+    BUILD_FINGERPRINT=google/razor/flo:6.0/MRA58K/2256973:user/release-keys \
+    PRIVATE_BUILD_DESC="razor-user 6.0 MRA58K 2256973 release-keys"
+
