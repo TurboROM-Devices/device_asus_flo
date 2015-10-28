@@ -37,6 +37,13 @@ PRODUCT_PACKAGES += \
 # TODO(danalbert): Remove this once stlport is dead and gone.
 PRODUCT_PACKAGES +=  libstlport
 
+# Tcmiface
+PRODUCT_PACKAGES += \
+    tcmiface
+
+PRODUCT_BOOT_JARS += \
+    tcmiface
+
 # Needed for VOIP+SIP
 PRODUCT_PACKAGES += \
     InCallUI \
