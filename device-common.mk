@@ -315,4 +315,4 @@ $(call inherit-product, hardware/qcom/msm8960/msm8960.mk)
 
 # Mpdecision init.d script
 PRODUCT_COPY_FILES += \
-    device/asus/flo/01mpdecision:system/etc/init.d/01mpdecision
+    device/asus/flo/80mpdecision:system/etc/init.d/80mpdecision
