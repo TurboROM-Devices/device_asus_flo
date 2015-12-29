@@ -28,3 +28,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT=google/razor/flo:6.0/MRA58V/2324235:user/release-keys \
     PRIVATE_BUILD_DESC="razor-user 6.0 MRA58V 2324235 release-keys"
 
+# Broken Device Maintainers
+PRODUCT_BUILD_PROP_OVERRIDES += \
+	DEVICE_MAINTAINERS="Jonathan Zuniga (CrackerTeg)"
