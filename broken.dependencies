@@ -1,15 +1,15 @@
 [
  {
    "remote":      "github",
-   "repository":  "TheMuppets/vendor_broadcom",
+   "repository":  "AICP/proprietary_vendor_broadcom",
    "target_path": "vendor/broadcom",
-   "branch":      "cm-13.0"
+   "branch":      "mm6.0"
  },
  {
    "remote":      "github",
-   "repository":  "TheMuppets/vendor_asus",
+   "repository":  "AICP/proprietary_vendor_asus",
    "target_path": "vendor/asus",
-   "branch":      "cm-13.0"
+   "branch":      "mm6.0"
  },
  {
    "remote":      "github",
