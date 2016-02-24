@@ -15,7 +15,7 @@
    "remote":      "github",
    "repository":  "BrokenROM/kernel_asus_flo",
    "target_path": "kernel/asus/flo",
-   "branch":      "m6.0"
+   "branch":      "m6.0.1"
  },
  {
    "remote":      "github",
