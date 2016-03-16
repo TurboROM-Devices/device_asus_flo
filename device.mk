@@ -27,7 +27,8 @@ PRODUCT_COPY_FILES := \
     device/asus/flo/init.flo.rc:root/init.flo.rc
 
 PRODUCT_PACKAGES += \
-    camera.flo
+    camera.flo \
+    SnapdragonCamera
 
 # NFC
 PRODUCT_PACKAGES += \
