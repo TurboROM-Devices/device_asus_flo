@@ -28,7 +28,7 @@ PRODUCT_COPY_FILES := \
 
 PRODUCT_PACKAGES += \
     camera.flo \
-    SnapdragonCamera
+    Snap
 
 # NFC
 PRODUCT_PACKAGES += \
