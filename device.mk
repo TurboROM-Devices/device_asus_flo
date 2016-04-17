@@ -28,7 +28,8 @@ PRODUCT_COPY_FILES := \
 
 PRODUCT_PACKAGES += \
     camera.flo \
-    Snap
+    Snap \
+    ViPER4Android
 
 # NFC
 PRODUCT_PACKAGES += \
