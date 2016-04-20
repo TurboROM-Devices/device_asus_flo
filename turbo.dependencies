@@ -7,9 +7,9 @@
  },
  {
    "remote":      "github",
-   "repository":  "flar2/flo",
+   "repository":  "Tk-Glitch/Glitch_Flo_AOSP",
    "target_path": "kernel/asus/flo",
-   "branch":      "ElementalX-5.00"
+   "branch":      "marshmallow"
  },
  {
    "remote":      "github",
