@@ -7,9 +7,9 @@
  },
  {
    "remote":      "github",
-   "repository":  "Tk-Glitch/Glitch_Flo_AOSP",
-   "target_path": "kernel/asus/flo",
-   "branch":      "marshmallow"
+   "repository":  "CyanogenMod/android_kernel_google_msm",
+   "target_path": "kernel/google/msm",
+   "branch":      "cm-13.0"
  },
  {
    "remote":      "github",
